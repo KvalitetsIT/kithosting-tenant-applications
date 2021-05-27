@@ -11,6 +11,11 @@ service:
   serviceAccount:
     create: false
 
+  resources:
+    limits:
+      memory: "1024Mi"
+      cpu: 1
+
   podAnnotations:
     prometheus.io/path: /metrics
     prometheus.io/port: "80"

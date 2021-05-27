@@ -1,6 +1,6 @@
 argoApps:
   server: https://kubernetes.default.svc
-  repoUrl: https://github.com/KvalitetsIT/medcom-vdx-k8s-services
+  repoUrl: https://github.com/KvalitetsIT/kithosting-test-kunde.git
 
   namespace: test-kunde
   project: test-kunde
@@ -20,5 +20,3 @@ argoApps:
         - Role
         - RoleBinding
       warnignored: true
-
-

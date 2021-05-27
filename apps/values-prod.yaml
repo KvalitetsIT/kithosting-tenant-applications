@@ -1,0 +1,8 @@
+argoApps:
+  applications:
+    applications:
+      path: apps
+      targetRevision: main
+      valueFiles:
+        - values.yaml
+        - values-prod.yaml

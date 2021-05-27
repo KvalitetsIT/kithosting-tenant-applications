@@ -1,0 +1,24 @@
+argoApps:
+  server: https://kubernetes.default.svc
+  repoUrl: https://github.com/KvalitetsIT/medcom-vdx-k8s-services
+
+  namespace: test-kunde
+  project: test-kunde
+
+  projects:
+    test-kunde:
+      description: Test Kunde
+      sources:
+        - https://github.com/KvalitetsIT/kithosting-test-kunde.git
+      destinations:
+        - namespace: test-kunde
+          server: https://kubernetes.default.svc
+        - namespace: argo
+          server: https://kubernetes.default.svc
+      ignored:
+        - Secret
+        - Role
+        - RoleBinding
+      warnignored: true
+
+

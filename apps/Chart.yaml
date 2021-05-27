@@ -1,0 +1,7 @@
+apiVersion: v2
+name: vdx-applications
+version: 1.0.5
+dependencies:
+  - name: argoApps
+    version: 1.0.5
+    repository: https://raw.githubusercontent.com/KvalitetsIT/helm-repo/master/

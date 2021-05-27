@@ -1,0 +1,33 @@
+service:
+  fullnameOverride: test-website
+  namespace: test-kunde
+
+  replicaCount: 2
+
+  image:
+    repository: nginx
+    tag: "1.21.0"
+
+  serviceAccount:
+    create: false
+
+  podAnnotations:
+    prometheus.io/path: /metrics
+    prometheus.io/port: "80"
+    prometheus.io/scrape: "true"
+
+  deployment:
+    containerPort: 80
+
+    readinessProbe:
+      httpGet:
+        path: /
+        port: 80
+      initialDelaySeconds: 5
+      periodSeconds: 5
+      successThreshold: 1
+      timeoutSeconds: 1
+
+  service:
+    port: 80
+    targetPort: container-port

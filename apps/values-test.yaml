@@ -6,3 +6,9 @@ argoApps:
       valueFiles:
         - values.yaml
         - values-test.yaml
+    test-website:
+      path: test-website
+      targetRevision: main
+      valueFiles:
+        - values.yaml
+        - values-test.yaml

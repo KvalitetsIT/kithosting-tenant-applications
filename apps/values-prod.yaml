@@ -1,7 +1,19 @@
 argoApps:
   applications:
-    applications:
+    test-kunde:
       path: apps
+      targetRevision: main
+      valueFiles:
+        - values.yaml
+        - values-prod.yaml
+    test-website:
+      path: test-website
+      targetRevision: main
+      valueFiles:
+        - values.yaml
+        - values-prod.yaml
+    prometheus:
+      path: prometheus
       targetRevision: main
       valueFiles:
         - values.yaml

@@ -1,0 +1,19 @@
+{{- $namespace := .Values.namespace }}
+{{- range $name,$cert := .Values.certificates }}
+apiVersion: cert-manager.io/v1alpha2
+kind: Certificate
+metadata:
+  name: {{ $name }}
+  namespace: {{ $namespace }}
+spec:
+  dnsNames:
+  {{- range  $cert.dnsNames }}
+  - {{ .  }}
+  {{- end }}
+  issuerRef:
+    group: cert-manager.io
+    kind: {{ $cert.issuer.kind }}
+    name: {{ $cert.issuer.name }}
+  secretName: {{ $name }}
+---
+{{- end }}

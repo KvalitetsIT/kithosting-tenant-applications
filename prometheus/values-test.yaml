@@ -1,0 +1,170 @@
+certificates:
+  metrics.t0.hosting.kitkube.dk:
+    issuer:
+      name: letsencrypt-prod
+      kind: ClusterIssuer
+    dnsNames:
+      - metrics.t0.hosting.kitkube.dk
+  alerts.t0.hosting.kitkube.dk:
+    issuer:
+      name: letsencrypt-prod
+      kind: ClusterIssuer
+    dnsNames:
+      - alerts.t0.hosting.kitkube.dk
+  prometheus.t0.hosting.kitkube.dk:
+    issuer:
+      name: letsencrypt-prod
+      kind: ClusterIssuer
+    dnsNames:
+      - prometheus.t0.hosting.kitkube.dk
+
+securedservices:
+  prometheus-alertmanager:
+    ingress:
+      annotations:
+        kubernetes.io/ingress.class: nginx
+        # Cluster intern: 192.168.0.0/24
+        # KIT: 80.208.24.138
+        nginx.ingress.kubernetes.io/whitelist-source-range: 192.168.0.0/24,80.208.24.138
+      hosts:
+        - alerts.t0.hosting.kitkube.dk
+      tls:
+        - hosts:
+           - alerts.t0.hosting.kitkube.dk
+          secretName: alerts.t0.hosting.kitkube.dk
+  prometheus-server:
+    ingress:
+      annotations:
+        kubernetes.io/ingress.class: nginx
+        # Cluster intern: 192.168.0.0/24
+        # KIT: 80.208.24.138
+        nginx.ingress.kubernetes.io/whitelist-source-range: 192.168.0.0/24,80.208.24.138
+      hosts:
+        - prometheus.t0.hosting.kitkube.dk
+      tls:
+        - hosts:
+           - prometheus.t0.hosting.kitkube.dk
+          secretName: prometheus.t0.hosting.kitkube.dk
+
+prometheus:
+  extraScrapeConfigs: |
+    - job_name: 'node_exporter_metrics_dbnfs'
+      static_configs:
+        - targets: ['192.168.0.9:9100']
+
+  server:
+    sidecarContainers:
+      alerts-loader:
+        env:
+          - name: LABEL
+            value: prometheusAlerts
+          - name: FOLDER
+            value: /tmp/
+          - name: REQ_URL
+            value: 'http://127.0.0.1:9090/-/reload'
+          - name: REQ_METHOD
+            value: POST
+          - name: NAMESPACE
+            value: ALL
+        image: 'kiwigrid/k8s-sidecar:0.1.20'
+        imagePullPolicy: IfNotPresent
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+          - mountPath: /tmp
+            name: alerts-volume
+      gatekeeper:
+        args:
+          - '--listen=0.0.0.0:8001'
+          - '--enable-authorization-header=true'
+          - '--upstream-url=http://localhost:9090'
+          - '--client-id=prometheus'
+          - '--discovery-url=https://keycloak.t0.hosting.kitkube.dk/auth/realms/infrastructure'
+          - '--secure-cookie=false'
+          - '--enable-default-deny=true'
+          - '--client-secret=$(KCPClientOIDC)'
+          - '--cookie-domain=.t0.hosting.kitkube.dk'
+          - '--resources=uri=/*'
+          - '--resources=uri=/api/*|white-listed=true'
+          - '--resources=uri=/alerts|white-listed=true'
+          - '--resources=uri=/static/*|white-listed=true'
+        env:
+          - name: KCPClientOIDC
+            valueFrom:
+              secretKeyRef:
+                key: secret
+                name: keycloakproxyclient
+        image: 'keycloak/keycloak-gatekeeper:5.0.0'
+        imagePullPolicy: IfNotPresent
+        ports:
+          - containerPort: 8001
+            name: container-port
+            protocol: TCP
+    persistentVolume:
+      enabled: true
+      storageClass: longhorn
+      accessModes:
+        - ReadWriteMany
+    ingress:
+      enabled: false
+
+  alertmanager:
+    persistentVolume:
+      enabled: true
+      storageClass: longhorn
+      accessModes:
+        - ReadWriteMany
+    ingress:
+      enabled: false
+    sidecarContainers:
+      - args:
+          - '--listen=0.0.0.0:8001'
+          - '--enable-authorization-header=true'
+          - '--upstream-url=http://localhost:9090'
+          - '--client-id=prometheus'
+          - '--discovery-url=https://keycloak.t0.hosting.kitkube.dk/auth/realms/infrastructure'
+          - '--secure-cookie=false'
+          - '--enable-default-deny=true'
+          - '--client-secret=$(KCPClientOIDC)'
+          - '--cookie-domain=.hosting.kitkube.dk'
+          - '--resources=uri=/*'
+          - '--resources=uri=/api/*|white-listed=true'
+          - '--resources=uri=/alerts|white-listed=true'
+          - '--resources=uri=/static/*|white-listed=true'
+        env:
+          - name: KCPClientOIDC
+            valueFrom:
+              secretKeyRef:
+                key: secret
+                name: keycloakproxyclient
+        image: 'keycloak/keycloak-gatekeeper:5.0.0'
+        imagePullPolicy: IfNotPresent
+        name: gatekeeper
+        ports:
+          - containerPort: 8001
+            name: container-port
+            protocol: TCP
+
+  pushgateway:
+    extraArgs:
+      persistence.file: /data/metrics
+      persistence.interval: 30s
+    persistentVolume:
+      enabled: true
+      storageClass: longhorn
+      accessModes:
+        - ReadWriteMany
+    ingress:
+      enabled: true
+      annotations:
+        kubernetes.io/ingress.class: nginx
+        # Cluster intern: 192.168.0.0/24
+        # KIT: 80.208.24.138
+        nginx.ingress.kubernetes.io/whitelist-source-range: 192.168.0.0/24,80.208.24.138
+      hosts:
+        - metrics.t0.hosting.kitkube.dk
+      tls:
+        - hosts:
+            - metrics.t0.hosting.kitkube.dk
+          secretName: metrics.t0.hosting.kitkube.dk

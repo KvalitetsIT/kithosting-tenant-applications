@@ -1,0 +1,32 @@
+{{- $namespace := .Values.namespace }}
+{{- $commonLabels := .Values.commonLabels }}
+{{- range $name,$value := .Values.securedservices }}
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  {{- if $value.ingress.annotations }}
+  annotations:
+{{ toYaml $value.ingress.annotations | indent 4 }}
+{{- end }}
+  labels:
+{{ toYaml $commonLabels | indent 4 }}
+{{ toYaml $value.componentLabels | indent 4 }}
+  name: {{ $name }}
+  namespace: {{ $namespace }}
+spec:
+  rules:
+  {{- range $host := $value.ingress.hosts }}
+    - host: {{ $host }}
+      http:
+        paths:
+          - backend:
+              serviceName: {{ $value.service.name }}
+              servicePort: 80
+            path: /
+  {{- end }}
+  {{- if $value.ingress.tls }}
+  tls:
+{{ toYaml $value.ingress.tls | indent 4 }}
+{{- end }}
+---
+{{- end }}

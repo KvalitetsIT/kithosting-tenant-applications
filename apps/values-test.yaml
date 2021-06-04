@@ -12,3 +12,9 @@ argoApps:
       valueFiles:
         - values.yaml
         - values-test.yaml
+    test-kunde-prometheus:
+      path: prometheus
+      targetRevision: main
+      valueFiles:
+        - values.yaml
+        - values-test.yaml

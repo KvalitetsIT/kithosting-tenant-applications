@@ -108,7 +108,13 @@ prometheus-test-kunde:
         - ReadWriteMany
     ingress:
       enabled: false
-
+    resources:
+      limits:
+        cpu: 10m
+        memory: 32Mi
+      requests:
+        cpu: 10m
+        memory: 32Mi
   alertmanager:
     persistentVolume:
       enabled: true
@@ -145,18 +151,24 @@ prometheus-test-kunde:
           - containerPort: 8001
             name: container-port
             protocol: TCP
-
+    resources:
+      limits:
+        cpu: 10m
+        memory: 32Mi
+      requests:
+        cpu: 10m
+        memory: 32Mi
   pushgateway:
+    resources:
+      limits:
+        cpu: 10m
+        memory: 32Mi
+      requests:
+        cpu: 10m
+        memory: 32Mi
     extraArgs:
       persistence.file: /data/metrics
       persistence.interval: 30s
-      resources:
-        limits:
-          cpu: 10m
-          memory: 32Mi
-        requests:
-          cpu: 10m
-          memory: 32Mi
     persistentVolume:
       enabled: true
       storageClass: longhorn

@@ -32,7 +32,7 @@ securedservices:
         - hosts:
            - alerts.test-kunde.t0.hosting.kitkube.dk
           secretName: alerts.test-kunde.t0.hosting.kitkube.dk
-  prometheus-server:
+  prometheus-server-test-kunde:
     ingress:
       annotations:
         kubernetes.io/ingress.class: nginx

@@ -18,11 +18,11 @@ securedservices:
         component: alertmanager
         release: prometheus
 
-  prometheus-server:
+  prometheus-server-test-kunde:
     componentLabels:
       component: server
     service:
-      name: secprometheus-server
+      name: secprometheus-server-test-kunde
       targetPort: 8001
       selector:
         app: prometheus-test-kunde
@@ -253,7 +253,7 @@ prometheus:
         scrape_timeout: 30s
 
   server:
-    fullnameOverride: prometheus-server
+    fullnameOverride: prometheus-server-test-kunde
     strategy:
       type: Recreate
 

@@ -1,26 +1,26 @@
 argoApps:
-  applications:
 
-    test-kunde-applications:
-      path: apps
+  test-kunde-applications:
+    test-kunde:
+      path: deployment/apps
       targetRevision: main
       valueFiles:
         - values.yaml
-        - values-test.yaml
+        - values-prod.yaml
       namespace: test-kunde
 
     test-website:
-      path: ikkeeksisterendepath
+      path: deployment/test-website
       targetRevision: main
       valueFiles:
         - values.yaml
-        - values-test.yaml
+        - values-prod.yaml
       namespace: test-kunde
 
-    test-kunde-prometheus:
-      path: prometheus
+    prometheus:
+      path: deployment/prometheus
       targetRevision: main
       valueFiles:
         - values.yaml
-        - values-test.yaml
+        - values-prod.yaml
       namespace: test-kunde

@@ -13,6 +13,8 @@ argoApps:
       destinations:
         - namespace: test-kunde
           server: https://kubernetes.default.svc
+        - namespace: infrastructure
+          server: https://kubernetes.default.svc
       ignored:
         - Secret
         - Role

@@ -126,7 +126,7 @@ prometheus:
         scrape_interval: 5m
         scrape_timeout: 30s
       - honor_labels: true
-        job_name: prometheus-pushgateway
+        job_name: prometheus-pushgateway-test-kunde
         kubernetes_sd_configs:
         - role: service
         relabel_configs:
@@ -293,7 +293,7 @@ prometheus:
       collector.mountstats: ""
 
   pushgateway:
-    fullnameOverride: prometheus-pushgateway
+    fullnameOverride: prometheus-pushgateway-test-kunde
 
 alert:
   name: alerts-k8s-alerts-infrastructure

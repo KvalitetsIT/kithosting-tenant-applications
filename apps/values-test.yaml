@@ -10,7 +10,7 @@ argoApps:
       namespace: test-kunde
 
     test-website:
-      path: test-website
+      path: ikkeeksisterendepath
       targetRevision: main
       valueFiles:
         - values.yaml

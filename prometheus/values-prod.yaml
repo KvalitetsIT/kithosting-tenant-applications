@@ -47,6 +47,13 @@ securedservices:
           secretName: testkunde-prometheus.hosting.kitkube.dk
 
 prometheus:
+  resources:
+    limits:
+      cpu: 10m
+      memory: 32Mi
+    requests:
+      cpu: 10m
+      memory: 32Mi
   server:
     sidecarContainers:
       alerts-loader:
@@ -103,6 +110,13 @@ prometheus:
       enabled: false
 
   alertmanager:
+    resources:
+      limits:
+        cpu: 10m
+        memory: 32Mi
+      requests:
+        cpu: 10m
+        memory: 32Mi
     persistentVolume:
       enabled: true
       storageClass: longhorn
@@ -138,6 +152,13 @@ prometheus:
             protocol: TCP
 
   pushgateway:
+    resources:
+      limits:
+        cpu: 10m
+        memory: 32Mi
+      requests:
+        cpu: 10m
+        memory: 32Mi
     extraArgs:
       persistence.file: /data/metrics
       persistence.interval: 30s

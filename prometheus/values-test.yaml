@@ -53,7 +53,15 @@ prometheus-test-kunde:
         - targets: ['192.168.0.9:9100']
 
   server:
+    resources:
+      limits:
+        cpu: 10m
+        memory: 32Mi
+      requests:
+        cpu: 10m
+        memory: 32Mi
     sidecarContainers:
+
       alerts-loader:
         env:
           - name: LABEL
@@ -73,6 +81,7 @@ prometheus-test-kunde:
         volumeMounts:
           - mountPath: /tmp
             name: alerts-volume
+
       gatekeeper:
         args:
           - '--listen=0.0.0.0:8001'
@@ -107,7 +116,15 @@ prometheus-test-kunde:
         - ReadWriteMany
     ingress:
       enabled: false
+
   alertmanager:
+    resources:
+      limits:
+        cpu: 10m
+        memory: 32Mi
+      requests:
+        cpu: 10m
+        memory: 32Mi
     persistentVolume:
       enabled: true
       storageClass: longhorn
@@ -145,6 +162,13 @@ prometheus-test-kunde:
             protocol: TCP
 
   pushgateway:
+    resources:
+      limits:
+        cpu: 10m
+        memory: 32Mi
+      requests:
+        cpu: 10m
+        memory: 32Mi
     extraArgs:
       persistence.file: /data/metrics
       persistence.interval: 30s

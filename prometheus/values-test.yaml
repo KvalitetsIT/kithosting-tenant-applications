@@ -190,3 +190,12 @@ prometheus-test-kunde:
         - hosts:
             - metrics.test-kunde.t0.hosting.kitkube.dk
           secretName: metrics.test-kunde.t0.hosting.kitkube.dk
+
+alertmanager:
+  resources:
+    limits:
+      cpu: 10m
+      memory: 32Mi
+    requests:
+      cpu: 10m
+      memory: 32Mi

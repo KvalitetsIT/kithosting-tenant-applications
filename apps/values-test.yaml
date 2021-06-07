@@ -1,6 +1,5 @@
 argoApps:
-  applications:
-
+  
     test-kunde-applications:
       path: apps
       targetRevision: main
@@ -8,15 +7,13 @@ argoApps:
         - values.yaml
         - values-test.yaml
       namespace: test-kunde
-
     test-website:
-      path: ikkeeksisterendepath
+      path: test-website
       targetRevision: main
       valueFiles:
         - values.yaml
         - values-test.yaml
       namespace: test-kunde
-
     test-kunde-prometheus:
       path: prometheus
       targetRevision: main

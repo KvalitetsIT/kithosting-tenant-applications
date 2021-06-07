@@ -1,5 +1,6 @@
 argoApps:
-  applications:
+
+  test-kunde-applications:
     test-kunde:
       path: apps
       targetRevision: main
@@ -7,7 +8,7 @@ argoApps:
         - values.yaml
         - values-prod.yaml
       namespace: test-kunde
-      
+
     test-website:
       path: test-website
       targetRevision: main

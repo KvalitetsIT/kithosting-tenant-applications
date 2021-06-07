@@ -6,11 +6,11 @@ commonLabels:
   release: prometheus
 
 securedservices:
-  prometheus-alertmanager:
+  test-kunde-prometheus-alertmanager:
     componentLabels:
       component: alertmanager
     service:
-      name: secprometheus-alertmanager
+      name: sectest-kunde-prometheus-alertmanager
       annotations:
       targetPort: 8001
       selector:
@@ -282,7 +282,7 @@ prometheus:
             value: ALL
 
   alertmanager:
-     fullnameOverride: prometheus-alertmanager
+     fullnameOverride: test-kunde-prometheus-alertmanager
 
   kubeStateMetrics:
     fullnameOverride: prometheus-kube-state-metrics

@@ -108,13 +108,6 @@ prometheus-test-kunde:
     ingress:
       enabled: false
   alertmanager:
-    resources:
-      limits:
-        cpu: 10m
-        memory: 32Mi
-      requests:
-        cpu: 10m
-        memory: 32Mi
     persistentVolume:
       enabled: true
       storageClass: longhorn

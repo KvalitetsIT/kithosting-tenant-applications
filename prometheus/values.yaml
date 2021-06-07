@@ -7,12 +7,26 @@ commonLabels:
 
 securedservices:
   prometheus-alertmanager-test-kunde:
+    resources:
+      limits:
+        cpu: 10m
+        memory: 32Mi
+      requests:
+        cpu: 10m
+        memory: 32Mi
     componentLabels:
       component: alertmanager
     service:
       name: secprometheus-alertmanager-test-kunde
       annotations:
       targetPort: 8001
+      resources:
+        limits:
+          cpu: 10m
+          memory: 32Mi
+        requests:
+          cpu: 10m
+          memory: 32Mi
       selector:
         app: prometheus-test-kunde
         component: alertmanager

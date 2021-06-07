@@ -1,22 +1,22 @@
 certificates:
-  metrics.t0.hosting.kitkube.dk:
+  metrics.test-kunde.t0.hosting.kitkube.dk:
     issuer:
       name: letsencrypt-prod
       kind: ClusterIssuer
     dnsNames:
-      - metrics.t0.hosting.kitkube.dk
-  alerts.t0.hosting.kitkube.dk:
+      - metrics.test-kunde.t0.hosting.kitkube.dk
+  alerts.test-kunde.t0.hosting.kitkube.dk:
     issuer:
       name: letsencrypt-prod
       kind: ClusterIssuer
     dnsNames:
-      - alerts.t0.hosting.kitkube.dk
-  prometheus.t0.hosting.kitkube.dk:
+      - alerts.test-kunde.t0.hosting.kitkube.dk
+  prometheus.test-kunde.t0.hosting.kitkube.dk:
     issuer:
       name: letsencrypt-prod
       kind: ClusterIssuer
     dnsNames:
-      - prometheus.t0.hosting.kitkube.dk
+      - prometheus.test-kunde.t0.hosting.kitkube.dk
 
 securedservices:
   prometheus-alertmanager:
@@ -27,11 +27,11 @@ securedservices:
         # KIT: 80.208.24.138
         nginx.ingress.kubernetes.io/whitelist-source-range: 192.168.0.0/24,80.208.24.138
       hosts:
-        - alerts.t0.hosting.kitkube.dk
+        - alerts.test-kunde.t0.hosting.kitkube.dk
       tls:
         - hosts:
-           - alerts.t0.hosting.kitkube.dk
-          secretName: alerts.t0.hosting.kitkube.dk
+           - alerts.test-kunde.t0.hosting.kitkube.dk
+          secretName: alerts.test-kunde.t0.hosting.kitkube.dk
   prometheus-server:
     ingress:
       annotations:
@@ -40,11 +40,11 @@ securedservices:
         # KIT: 80.208.24.138
         nginx.ingress.kubernetes.io/whitelist-source-range: 192.168.0.0/24,80.208.24.138
       hosts:
-        - prometheus.t0.hosting.kitkube.dk
+        - prometheus.test-kunde.t0.hosting.kitkube.dk
       tls:
         - hosts:
-           - prometheus.t0.hosting.kitkube.dk
-          secretName: prometheus.t0.hosting.kitkube.dk
+           - prometheus.test-kunde.t0.hosting.kitkube.dk
+          secretName: prometheus.test-kunde.t0.hosting.kitkube.dk
 
 prometheus:
   extraScrapeConfigs: |
@@ -163,8 +163,8 @@ prometheus:
         # KIT: 80.208.24.138
         nginx.ingress.kubernetes.io/whitelist-source-range: 192.168.0.0/24,80.208.24.138
       hosts:
-        - metrics.t0.hosting.kitkube.dk
+        - metrics.test-kunde.t0.hosting.kitkube.dk
       tls:
         - hosts:
-            - metrics.t0.hosting.kitkube.dk
-          secretName: metrics.t0.hosting.kitkube.dk
+            - metrics.test-kunde.t0.hosting.kitkube.dk
+          secretName: metrics.test-kunde.t0.hosting.kitkube.dk

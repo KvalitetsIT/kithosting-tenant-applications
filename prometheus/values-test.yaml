@@ -33,6 +33,13 @@ securedservices:
            - alerts.test-kunde.t0.hosting.kitkube.dk
           secretName: alerts.test-kunde.t0.hosting.kitkube.dk
   prometheus-server-test-kunde:
+      resources:
+         limits:
+           cpu: 10m
+           memory: 32Mi
+        # requests:
+        #   cpu: 10m
+        #   memory: 32Mi
     ingress:
       annotations:
         kubernetes.io/ingress.class: nginx
@@ -47,13 +54,6 @@ securedservices:
           secretName: prometheus.test-kunde.t0.hosting.kitkube.dk
 
 prometheus-test-kunde:
-  resources:
-     limits:
-       cpu: 10m
-       memory: 32Mi
-    # requests:
-    #   cpu: 10m
-    #   memory: 32Mi
   extraScrapeConfigs: |
     - job_name: 'node_exporter_metrics_dbnfs'
       static_configs:

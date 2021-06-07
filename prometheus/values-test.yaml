@@ -46,13 +46,12 @@ securedservices:
            - prometheus.test-kunde.t0.hosting.kitkube.dk
           secretName: prometheus.test-kunde.t0.hosting.kitkube.dk
 
-prometheus-test-kunde:
+prometheus:
   extraScrapeConfigs: |
     - job_name: 'node_exporter_metrics_dbnfs'
       static_configs:
         - targets: ['192.168.0.9:9100']
 
-  server:
     sidecarContainers:
 
       alerts-loader:
@@ -111,6 +110,10 @@ prometheus-test-kunde:
       enabled: false
 
   alertmanager:
+    resources:
+      limits:
+        cpu: 2
+        memory: 32Mi
     persistentVolume:
       enabled: true
       storageClass: longhorn
@@ -148,6 +151,10 @@ prometheus-test-kunde:
             protocol: TCP
 
   pushgateway:
+    resources:
+      limits:
+        cpu: 2
+        memory: 32Mi
     extraArgs:
       persistence.file: /data/metrics
       persistence.interval: 30s
@@ -169,21 +176,3 @@ prometheus-test-kunde:
         - hosts:
             - metrics.test-kunde.t0.hosting.kitkube.dk
           secretName: metrics.test-kunde.t0.hosting.kitkube.dk
-
-alertmanager:
-  resources:
-    limits:
-      cpu: 10m
-      memory: 32Mi
-
-pushgateway:
-  resources:
-    limits:
-      cpu: 10m
-      memory: 32Mi
-
-server:
-  resources:
-    limits:
-      cpu: 10m
-      memory: 32Mi

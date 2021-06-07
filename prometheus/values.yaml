@@ -29,8 +29,11 @@ securedservices:
         component: server
         release: prometheus
 
-
 prometheus:
+  resources:
+    limits:
+      cpu: 2
+      memory: 32Mi
   serverFiles:
     prometheus.yml:
       rule_files:

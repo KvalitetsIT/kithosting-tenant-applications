@@ -68,13 +68,6 @@ prometheus-test-kunde:
             value: ALL
         image: 'kiwigrid/k8s-sidecar:0.1.20'
         imagePullPolicy: IfNotPresent
-        resources:
-          limits:
-            cpu: 10m
-            memory: 32Mi
-          requests:
-            cpu: 10m
-            memory: 32Mi
         terminationMessagePath: /dev/termination-log
         terminationMessagePolicy: File
         volumeMounts:
@@ -102,13 +95,6 @@ prometheus-test-kunde:
                 key: secret
                 name: keycloakproxyclient
         image: 'keycloak/keycloak-gatekeeper:5.0.0'
-        resources:
-          limits:
-            cpu: 10m
-            memory: 32Mi
-          requests:
-            cpu: 10m
-            memory: 32Mi
         imagePullPolicy: IfNotPresent
         ports:
           - containerPort: 8001
@@ -122,6 +108,13 @@ prometheus-test-kunde:
     ingress:
       enabled: false
   alertmanager:
+    resources:
+      limits:
+        cpu: 10m
+        memory: 32Mi
+      requests:
+        cpu: 10m
+        memory: 32Mi
     persistentVolume:
       enabled: true
       storageClass: longhorn
@@ -151,13 +144,6 @@ prometheus-test-kunde:
                 key: secret
                 name: keycloakproxyclient
         image: 'keycloak/keycloak-gatekeeper:5.0.0'
-        resources:
-          limits:
-            cpu: 10m
-            memory: 32Mi
-          requests:
-            cpu: 10m
-            memory: 32Mi
         imagePullPolicy: IfNotPresent
         name: gatekeeper
         ports:

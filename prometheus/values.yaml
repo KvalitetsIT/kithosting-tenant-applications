@@ -6,7 +6,7 @@ commonLabels:
   release: prometheus
 
 securedservices:
-  test-kunde-prometheus-alertmanager:
+  prometheus-alertmanager:
     componentLabels:
       component: alertmanager
     service:
@@ -14,7 +14,7 @@ securedservices:
       annotations:
       targetPort: 8001
       selector:
-        app: prometheus
+        app: prometheus-test-kunde
         component: alertmanager
         release: prometheus
 
@@ -25,7 +25,7 @@ securedservices:
       name: secprometheus-server
       targetPort: 8001
       selector:
-        app: prometheus
+        app: prometheus-test-kunde
         component: server
         release: prometheus
 

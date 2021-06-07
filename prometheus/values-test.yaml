@@ -19,7 +19,7 @@ certificates:
       - prometheus.test-kunde.t0.hosting.kitkube.dk
 
 securedservices:
-  prometheus-alertmanager-test-kunde:
+  prometheus-alertmanager:
     ingress:
       annotations:
         kubernetes.io/ingress.class: nginx

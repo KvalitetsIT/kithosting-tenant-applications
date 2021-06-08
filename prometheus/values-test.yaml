@@ -115,6 +115,11 @@ prometheus:
         limits:
           cpu: 2
           memory: 32Mi
+  nodeExporter:
+    resources:
+      limits:
+        cpu: 2
+        memory: 32Mi
 
   alertmanager:
     persistentVolume:

@@ -52,6 +52,10 @@ prometheus:
       cpu: 10m
       memory: 32Mi
   server:
+    resources:
+      limits:
+        cpu: "1500m"
+        memory: "512Mi"
     sidecarContainers:
       alerts-loader:
         env:

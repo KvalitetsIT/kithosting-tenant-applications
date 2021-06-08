@@ -103,6 +103,10 @@ prometheus:
                 name: keycloakproxyclient
         image: 'keycloak/keycloak-gatekeeper:5.0.0'
         imagePullPolicy: IfNotPresent
+        resources:
+          limits:
+            cpu: 10m
+            memory: 32Mi
         ports:
           - containerPort: 8001
             name: container-port

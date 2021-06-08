@@ -47,11 +47,11 @@ securedservices:
           secretName: prometheus.test-kunde.t0.hosting.kitkube.dk
 
 prometheus:
-  extraScrapeConfigs: |
-    - job_name: 'node_exporter_metrics_dbnfs'
-      static_configs:
-        - targets: ['192.168.0.9:9100']
-
+  resources:
+    limits:
+      cpu: 10m
+      memory: 32Mi
+  server:
     sidecarContainers:
       alerts-loader:
         env:
@@ -67,27 +67,23 @@ prometheus:
             value: ALL
         image: 'kiwigrid/k8s-sidecar:0.1.20'
         imagePullPolicy: IfNotPresent
-        resources:
-          limits:
-            cpu: "1500m"
-            memory: "512Mi"
+        resources: {}
         terminationMessagePath: /dev/termination-log
         terminationMessagePolicy: File
         volumeMounts:
           - mountPath: /tmp
             name: alerts-volume
-
       gatekeeper:
         args:
           - '--listen=0.0.0.0:8001'
           - '--enable-authorization-header=true'
           - '--upstream-url=http://localhost:9090'
-          - '--client-id=prometheus-test-kunde'
+          - '--client-id=prometheus'
           - '--discovery-url=https://keycloak.t0.hosting.kitkube.dk/auth/realms/infrastructure'
           - '--secure-cookie=false'
           - '--enable-default-deny=true'
           - '--client-secret=$(KCPClientOIDC)'
-          - '--cookie-domain=.t0.hosting.kitkube.dk'
+          - '--cookie-domain=.hosting.kitkube.dk'
           - '--resources=uri=/*'
           - '--resources=uri=/api/*|white-listed=true'
           - '--resources=uri=/alerts|white-listed=true'
@@ -99,10 +95,6 @@ prometheus:
                 key: secret
                 name: keycloakproxyclient
         image: 'keycloak/keycloak-gatekeeper:5.0.0'
-        resources:
-          limits:
-            cpu: "1500m"
-            memory: "512Mi"
         imagePullPolicy: IfNotPresent
         ports:
           - containerPort: 8001
@@ -113,24 +105,6 @@ prometheus:
       storageClass: longhorn
     ingress:
       enabled: false
-
-  configmapReload:
-    alertmanager:
-      resources:
-        limits:
-          cpu: "1500m"
-          memory: "512Mi"
-    prometheus:
-      resources:
-        limits:
-          cpu: "1500m"
-          memory: "512Mi"
-
-  server:
-    resources:
-      limits:
-        cpu: "1500m"
-        memory: "512Mi"
 
   alertmanager:
     resources:

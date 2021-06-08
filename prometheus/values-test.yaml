@@ -117,6 +117,17 @@ prometheus:
     ingress:
       enabled: false
 
+  configmapReload:
+    alertmanager:
+      resources:
+        limits:
+          cpu: "1500m"
+          memory: "512Mi"
+    prometheus:
+      resources:
+        limits:
+          cpu: "1500m"
+          memory: "512Mi"
   alertmanager:
     resources:
       limits:

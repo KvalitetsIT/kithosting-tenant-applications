@@ -104,8 +104,6 @@ prometheus:
     persistentVolume:
       enabled: true
       storageClass: longhorn
-      accessModes:
-        - ReadWriteMany
     ingress:
       enabled: false
 
@@ -113,36 +111,28 @@ prometheus:
     alertmanager:
       resources:
         limits:
-          cpu: 1
-          memory: 32Mi
+          cpu: "1500m"
+          memory: "512Mi"
     prometheus:
       resources:
         limits:
-          cpu: 1
-          memory: 32Mi
-
-  nodeExporter:
-    resources:
-      limits:
-        cpu: 1
-        memory: 32Mi
+          cpu: "1500m"
+          memory: "512Mi"
 
   server:
     resources:
       limits:
-        cpu: 1
-        memory: 32Mi
+        cpu: "1500m"
+        memory: "512Mi"
 
   alertmanager:
     resources:
       limits:
-        cpu: 1
-        memory: 32Mi
+        cpu: "1500m"
+        memory: "512Mi"
     persistentVolume:
       enabled: true
       storageClass: longhorn
-      accessModes:
-        - ReadWriteMany
     ingress:
       enabled: false
     sidecarContainers:
@@ -177,16 +167,14 @@ prometheus:
   pushgateway:
     resources:
       limits:
-        cpu: 1
-        memory: 32Mi
+        cpu: "1500m"
+        memory: "512Mi"
     extraArgs:
       persistence.file: /data/metrics
       persistence.interval: 30s
     persistentVolume:
       enabled: true
       storageClass: longhorn
-      accessModes:
-        - ReadWriteMany
     ingress:
       enabled: true
       annotations:

@@ -264,6 +264,10 @@ prometheus:
         emptyDir: {}
     sidecarContainers:
       - name: alerts-loader
+        resources:
+          limits:
+            cpu: "1500m"
+            memory: "512Mi"
         image:  kiwigrid/k8s-sidecar:0.1.20
         volumeMounts:
           - name: alerts-volume

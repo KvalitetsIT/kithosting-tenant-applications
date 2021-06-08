@@ -109,6 +109,18 @@ prometheus:
     ingress:
       enabled: false
 
+  configmapReload:
+    alertmanager:
+      resources:
+        limits:
+          cpu: 2
+          memory: 32Mi
+    prometheus:
+      resources:
+        limits:
+          cpu: 2
+          memory: 32Mi
+
   nodeExporter:
     resources:
       limits:

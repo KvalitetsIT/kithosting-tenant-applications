@@ -30,6 +30,10 @@ securedservices:
         release: prometheus
 
 prometheus:
+  resources:
+    limits:
+      cpu: "1500m"
+      memory: "512Mi"
   serverFiles:
     prometheus.yml:
       rule_files:

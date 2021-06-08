@@ -109,11 +109,14 @@ prometheus:
     ingress:
       enabled: false
 
+  configmapReload:
+    alertmanager:
+      resources:
+        limits:
+          cpu: 2
+          memory: 32Mi
+
   alertmanager:
-    resources:
-      limits:
-        cpu: 2
-        memory: 32Mi
     persistentVolume:
       enabled: true
       storageClass: longhorn

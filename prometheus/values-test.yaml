@@ -113,30 +113,30 @@ prometheus:
     alertmanager:
       resources:
         limits:
-          cpu: 4
+          cpu: 1
           memory: 32Mi
     prometheus:
       resources:
         limits:
-          cpu: 4
+          cpu: 1
           memory: 32Mi
 
   nodeExporter:
     resources:
       limits:
-        cpu: 4
+        cpu: 1
         memory: 32Mi
 
   server:
     resources:
       limits:
-        cpu: 4
+        cpu: 1
         memory: 32Mi
 
   alertmanager:
     resources:
       limits:
-        cpu: 4
+        cpu: 1
         memory: 32Mi
     persistentVolume:
       enabled: true
@@ -177,7 +177,7 @@ prometheus:
   pushgateway:
     resources:
       limits:
-        cpu: 4
+        cpu: 1
         memory: 32Mi
     extraArgs:
       persistence.file: /data/metrics

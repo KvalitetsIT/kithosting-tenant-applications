@@ -292,8 +292,7 @@ prometheus:
      fullnameOverride: prometheus-alertmanager-test-kunde
 
   kubeStateMetrics:
-    fullnameOverride: prometheus-kube-state-metrics
-    kube-state-metrics.resources: {}
+    enabled: false
 
   nodeExporter:
     enabled: false

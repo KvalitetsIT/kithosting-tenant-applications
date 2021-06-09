@@ -293,7 +293,7 @@ prometheus:
 
   kubeStateMetrics:
     fullnameOverride: prometheus-kube-state-metrics
-    enabled: false
+    kube-state-metrics.resources: {}
 
   nodeExporter:
     enabled: false

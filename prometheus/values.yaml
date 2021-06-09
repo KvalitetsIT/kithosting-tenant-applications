@@ -6,26 +6,26 @@ commonLabels:
   release: prometheus
 
 securedservices:
-  prometheus-alertmanager-test-kunde:
+  prometheus-alertmanager:
     componentLabels:
       component: alertmanager
     service:
-      name: secprometheus-alertmanager-test-kunde
+      name: secprometheus-alertmanager
       annotations:
       targetPort: 8001
       selector:
-        app: prometheus-test-kunde
+        app: prometheus
         component: alertmanager
         release: prometheus
 
-  prometheus-server-test-kunde:
+  prometheus-server:
     componentLabels:
       component: server
     service:
-      name: secprometheus-server-test-kunde
+      name: secprometheus-server
       targetPort: 8001
       selector:
-        app: prometheus-test-kunde
+        app: prometheus
         component: server
         release: prometheus
 
@@ -129,7 +129,7 @@ prometheus:
         scrape_interval: 5m
         scrape_timeout: 30s
       - honor_labels: true
-        job_name: prometheus-pushgateway-test-kunde
+        job_name: prometheus-pushgateway
         kubernetes_sd_configs:
         - role: service
         relabel_configs:
@@ -256,7 +256,7 @@ prometheus:
         scrape_timeout: 30s
 
   server:
-    fullnameOverride: prometheus-server-test-kunde
+    fullnameOverride: prometheus-server
     strategy:
       type: Recreate
 
@@ -289,7 +289,7 @@ prometheus:
             value: ALL
 
   alertmanager:
-     fullnameOverride: prometheus-alertmanager-test-kunde
+     fullnameOverride: prometheus-alertmanager
 
   kubeStateMetrics:
     enabled: false
@@ -298,7 +298,7 @@ prometheus:
     enabled: false
 
   pushgateway:
-    fullnameOverride: prometheus-pushgateway-test-kunde
+    fullnameOverride: prometheus-pushgateway
 
 alert:
   name: alerts-k8s-alerts-infrastructure

@@ -256,7 +256,7 @@ prometheus:
         scrape_timeout: 30s
 
   server:
-    fullnameOverride: prometheus-server
+    fullnameOverride: test-kunde-prometheus-server
     strategy:
       type: Recreate
 
@@ -289,7 +289,7 @@ prometheus:
             value: ALL
 
   alertmanager:
-     fullnameOverride: prometheus-alertmanager
+     fullnameOverride: test-kunde-prometheus-alertmanager
 
   kubeStateMetrics:
     enabled: false
@@ -298,7 +298,7 @@ prometheus:
     enabled: false
 
   pushgateway:
-    fullnameOverride: prometheus-pushgateway
+    fullnameOverride: test-kunde-prometheus-pushgateway
 
 alert:
   name: alerts-k8s-alerts-infrastructure

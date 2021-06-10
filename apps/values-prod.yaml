@@ -15,11 +15,3 @@ argoApps:
         - values.yaml
         - values-prod.yaml
       namespace: test-kunde
-
-    test-kunde-prometheus:
-      path: prometheus
-      targetRevision: main
-      valueFiles:
-        - values.yaml
-        - values-prod.yaml
-      namespace: test-kunde

@@ -16,7 +16,7 @@ securedservices:
       selector:
         app: prometheus
         component: alertmanager
-        release: prometheus
+        release: test-kunde-prometheus
 
   prometheus-server:
     componentLabels:

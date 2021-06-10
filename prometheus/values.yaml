@@ -27,7 +27,7 @@ securedservices:
       selector:
         app: prometheus
         component: server
-        release: prometheus
+        release: test-kunde-prometheus
 
 prometheus:
   resources:

@@ -86,7 +86,7 @@ prometheus:
           - '--enable-authorization-header=true'
           - '--upstream-url=http://localhost:9090'
           - '--client-id=test-kunde-prometheus'
-          - '--discovery-url=https://keycloak.t0.hosting.kitkube.dk/auth/realms/infrastructure'
+          - '--discovery-url=https://keycloak.t0.hosting.kitkube.dk/auth/realms/Infrastructure'
           - '--secure-cookie=false'
           - '--enable-default-deny=true'
           - '--client-secret=$(KCPClientOIDC)'

@@ -1,5 +1,6 @@
 # Applications for your new tenant?
-Dette repo indeholder applikationer for test-kunde på KitHosting-platformen
+This repo contains a template for a repo holding applications for a tenant.
+The repo contains Helm chart config used by Argo to deploy services.
 
 ## What should this be used for?
 By following the guide here https://github.com/KvalitetsIT/kithosting-k8s/tree/master/deployment/multitenancy you should end up at this repository at some point.

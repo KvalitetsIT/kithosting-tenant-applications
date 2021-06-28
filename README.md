@@ -3,7 +3,7 @@ This repo contains a template for a repo holding applications for a tenant.
 The repo contains Helm chart config used by Argo to deploy services.
 
 ## What should this be used for?
-By following the guide here https://github.com/KvalitetsIT/kithosting-k8s/tree/master/deployment/multitenancy you should end up at this repository at some point.
+As a template for a new repo containing Helm charts for Argo.
 
 This repo contains:
 - test-website (this is just to show how to add a simple application - This should be deleted)

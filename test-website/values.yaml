@@ -8,14 +8,6 @@ service:
     repository: nginx
     tag: "1.21.0"
 
-  serviceAccount:
-    create: false
-
-  resources:
-    limits:
-      memory: "1024Mi"
-      cpu: 1
-
   podAnnotations:
     prometheus.io/path: /metrics
     prometheus.io/port: "80"
@@ -23,6 +15,14 @@ service:
 
   deployment:
     containerPort: 80
+
+    resources:
+      limits:
+        memory: "1024Mi"
+        cpu: 1
+      requests:
+        memory: "512Mi"
+        cpu: 500m
 
     readinessProbe:
       httpGet:

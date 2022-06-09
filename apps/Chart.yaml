@@ -3,5 +3,5 @@ name: test-kunde
 version: 1.2.1
 dependencies:
   - name: argoApps
-    version: 1.2.1
+    version: 1.2.2
     repository: https://raw.githubusercontent.com/KvalitetsIT/helm-repo/master/

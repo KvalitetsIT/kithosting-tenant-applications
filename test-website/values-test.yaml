@@ -3,6 +3,7 @@ service:
     enabled: true
     annotations:
       kubernetes.io/ingress.class: nginx
+      cert-manager.io/cluster-issuer: letsencrypt-prod
     hosts:
       - host: website.t0.hosting.kitkube.dk
         paths:
@@ -11,15 +12,3 @@ service:
       - hosts:
           - website.t0.hosting.kitkube.dk
         secretName: website.t0.hosting.kitkube.dk
-
-  certificate:
-    website.t0.hosting.kitkube.dk:
-      namespace: test-kunde
-      spec:
-        secretName: website.t0.hosting.kitkube.dk
-        issuerRef:
-          name: letsencrypt-prod
-          kind: ClusterIssuer
-          group: cert-manager.io
-        dnsNames:
-          - website.t0.hosting.kitkube.dk

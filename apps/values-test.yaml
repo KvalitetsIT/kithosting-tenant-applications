@@ -2,14 +2,14 @@ argoApps:
   applications:
     test-kunde-applications:
       path: apps
-      targetRevision: main
+      targetRevision: test
       valueFiles:
         - values.yaml
         - values-test.yaml
 
     test-website:
       path: test-website
-      targetRevision: main
+      targetRevision: test
       valueFiles:
         - values.yaml
         - values-test.yaml

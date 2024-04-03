@@ -2,7 +2,7 @@ argoApps:
   applications:
     test-kunde-applications:
       path: apps
-      targetRevision: main
+      targetRevision: prod
       valueFiles:
         - values.yaml
         - values-prod.yaml
@@ -10,7 +10,7 @@ argoApps:
 
     test-website:
       path: test-website
-      targetRevision: main
+      targetRevision: prod
       valueFiles:
         - values.yaml
         - values-prod.yaml

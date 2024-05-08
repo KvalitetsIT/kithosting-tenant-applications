@@ -1,6 +1,6 @@
 argoApps:
   server: https://kubernetes.default.svc
-  repoUrl: https://github.com/KvalitetsIT/kithosting-test-kunde.git
+  repoUrl: git@github.com:KvalitetsIT/kithosting-tenant-applications.git
 
   namespaceArgo: infrastructure
   namespace: test-kunde

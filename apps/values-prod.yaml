@@ -6,7 +6,6 @@ argoApps:
       valueFiles:
         - values.yaml
         - values-prod.yaml
-      namespace: test-kunde
 
     test-website:
       path: test-website
@@ -14,4 +13,3 @@ argoApps:
       valueFiles:
         - values.yaml
         - values-prod.yaml
-      namespace: test-kunde

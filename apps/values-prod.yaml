@@ -6,6 +6,8 @@ argoApps:
       valueFiles:
         - values.yaml
         - values-prod.yaml
+      sync: 
+        auto: true
 
     test-website:
       path: test-website
@@ -13,3 +15,5 @@ argoApps:
       valueFiles:
         - values.yaml
         - values-prod.yaml
+      sync: 
+        auto: true

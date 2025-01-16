@@ -1,6 +1,5 @@
 service:
   fullnameOverride: test-website
-  namespace: test-kunde
 
   replicaCount: 2
 
